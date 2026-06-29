@@ -84,9 +84,13 @@ export default function CreateMatch() {
 
     try {
       setLoading(true);
+      const token = localStorage.getItem("token") || "";
       const res = await fetch("/api/matches", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({
           duration_minutes: settings.duration,
           min_rating: settings.minRating,

@@ -74,9 +74,13 @@ export default function CreateClashSquad() {
         }
       }
 
+      const token = localStorage.getItem("token") || "";
       const res = await fetch("/api/cs/create", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({
           duration_minutes: duration,
           wager_per_team: wager,
