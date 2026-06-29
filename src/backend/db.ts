@@ -1,6 +1,7 @@
 import Database from "better-sqlite3";
 
-const db = new Database("./codearena.sqlite");
+const dbPath = process.env.DATABASE_PATH || "./codearena.sqlite";
+const db = new Database(dbPath);
 
 export async function dbRun(sql: string, params: any[] = []) {
   return db.prepare(sql).run(...params);
